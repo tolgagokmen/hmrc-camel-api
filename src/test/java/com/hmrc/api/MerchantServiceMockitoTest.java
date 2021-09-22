@@ -52,9 +52,7 @@ public class MerchantServiceMockitoTest {
     @Test
     public void shouldGetOneMerchant() {
         // Given
-        List<Merchant> order = newArrayList(
-                new Merchant("1", "Merchant1"),
-                new Merchant("2", "Merchant2"));
+        List<Merchant> order = newArrayList(new Merchant("1", "Merchant1"), new Merchant("2", "Merchant2"));
         given(merchantRepository.findById("1")).willReturn(Optional.of(order.get(0)));
 
         // When
@@ -71,27 +69,33 @@ public class MerchantServiceMockitoTest {
 
     @Test
     public void shouldCreateMerchant() {
+        // Given
         Merchant merchant = new Merchant(null, "Merchant");
         Merchant merchantWithId = new Merchant("1", "Merchant");
         given(merchantRepository.save(merchant)).willReturn(merchantWithId);
 
+        // When
         String createdMerchant = merchantService.createMerchant(new MerchantDto(null, "Merchant"));
 
+        // Then
         assertThat(createdMerchant, is(merchantWithId.getId()));
     }
 
     @Test
     public void shouldUpdateMerchant() {
+        // Given
         Merchant merchantWithId = new Merchant("1", "Merchant");
 
+        // When
         merchantService.updateMerchant(new MerchantDto("1", "Merchant"));
 
+        // Then
         verify(merchantRepository, times(1)).save(merchantWithId);
     }
 
     @Test
     public void shouldThrowExceptionIfIdIsNulL() {
-
+        // When
         try {
             merchantService.updateMerchant(new MerchantDto(null, "Merchant"));
             fail("Runtime exception should have been thrown");
@@ -99,6 +103,7 @@ public class MerchantServiceMockitoTest {
             assertThat(e.getMessage(), is("Merchant ID Mandatory"));
         }
 
+        // Then
         verify(merchantRepository, never()).save(any());
     }
 

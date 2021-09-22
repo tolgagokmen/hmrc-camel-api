@@ -7,8 +7,10 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:application.properties")
 public class AppConfig {
+
     @Value("${get.login}")
     public String loginPath;
+
     @Value("${get.client}")
     public String clientPath;
 

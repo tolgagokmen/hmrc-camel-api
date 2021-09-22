@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class MerchantDto {
 
     private String id;
+
     private String name;
 
 }
