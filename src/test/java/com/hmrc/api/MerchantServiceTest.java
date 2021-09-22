@@ -21,6 +21,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpStatus.*;
+import static com.google.common.collect.Lists.newArrayList;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Slf4j
@@ -92,9 +93,10 @@ public class MerchantServiceTest {
         Merchant merchant = new Merchant(null, "merchant");
         merchant = merchantRepository.save(merchant);
 
+
         // When
         MerchantDto merchantDto = new MerchantDto(merchant.getId(), "merchant1");
-        ResponseEntity<String> actual = restTemplate.exchange(format("/api/merchants/%s", merchant.getId()), HttpMethod.PUT, new HttpEntity<>(merchantDto), String.class);
+        ResponseEntity<String> actual = restTemplate.exchange("/api/merchants", HttpMethod.PUT, new HttpEntity<>(merchantDto), String.class);
 
         // Then
         assertThat(actual.getStatusCode(), is(NO_CONTENT));
