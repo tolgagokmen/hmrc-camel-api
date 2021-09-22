@@ -75,7 +75,6 @@ public class MerchantServiceRoute extends RouteBuilder {
                 .route()
                 .tracing()
 
-                .log("Message body is ${body}")
                 .to("bean:merchantService?method=findAllMerchants")
                 .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(OK.value()))
                 .outputType(MerchantDtoList.class).description("xx");;
@@ -88,7 +87,6 @@ public class MerchantServiceRoute extends RouteBuilder {
                 .route()
                 .tracing()
 
-                .log("Message body is ${body}")
                 .to("bean:merchantService?method=findMerchant(${header.id})")
                 .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(OK.value()))
                 .outputType(Merchant.class).description("xx");
