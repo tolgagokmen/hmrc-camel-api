@@ -13,8 +13,8 @@ A Springboot app, which can easily be deployed to Heroku.
 4) docker build -t hmrc-camel-api .
 5) docker run -p 8083:8083 hmrc-camel-api
 
-#####Your app should now be running on -> [localhost:8383](http://localhost:8383/).
-#####To import swagger to postman -> http://localhost:8383/api/api-doc
+#####Your app should now be running on -> [localhost:8083](http://localhost:8083/).
+#####To import swagger to postman -> http://localhost:8083/api/api-doc
 
 
 
