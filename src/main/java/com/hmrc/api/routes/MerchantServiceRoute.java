@@ -50,6 +50,7 @@ public class MerchantServiceRoute extends RouteBuilder {
                 .setHeader(HTTP_RESPONSE_CODE, constant(INTERNAL_SERVER_ERROR.value()))
                 .log("Error : ${exception.message} ")
                 .setBody(simple("Internal Server Error  ${body}"));
+
         onException(RuntimeException.class)
                 .handled(true)
                 .setHeader(HTTP_RESPONSE_CODE, constant(INTERNAL_SERVER_ERROR.value()))
