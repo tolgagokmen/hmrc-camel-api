@@ -37,7 +37,7 @@ public class MerchantServiceRoute extends RouteBuilder {
                 .handled(true)
                 .setHeader(HTTP_RESPONSE_CODE, constant(BAD_REQUEST.value()))
                 .log("Error : ${exception.message} ")
-                .setBody(simple("Validation Error occurred for message"));
+                .setBody(simple("Validation Error!"));
 
         onException(MerchantNotFoundException.class)
                 .handled(true)
@@ -50,6 +50,11 @@ public class MerchantServiceRoute extends RouteBuilder {
                 .setHeader(HTTP_RESPONSE_CODE, constant(INTERNAL_SERVER_ERROR.value()))
                 .log("Error : ${exception.message} ")
                 .setBody(simple("Internal Server Error  ${body}"));
+        onException(RuntimeException.class)
+                .handled(true)
+                .setHeader(HTTP_RESPONSE_CODE, constant(INTERNAL_SERVER_ERROR.value()))
+                .log("Error : ${exception.message} ")
+                .setBody(simple("Exception  ${body}"));
 
         restConfiguration()
                 .component("servlet")

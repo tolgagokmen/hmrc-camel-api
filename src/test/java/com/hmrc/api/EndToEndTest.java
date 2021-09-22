@@ -58,7 +58,7 @@ public class EndToEndTest {
 
         // Then
         assertThat(actual.getStatusCode(), is(HttpStatus.BAD_REQUEST));
-        assertTrue(actual.getBody().contains("Validation Error occurred for message"));
+        assertTrue(actual.getBody().contains("Validation Error!"));
 
     }
 
